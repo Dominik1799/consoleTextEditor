@@ -1,0 +1,10 @@
+#ifndef CONSOLETEXTEDITOR_PRINT_H
+#define CONSOLETEXTEDITOR_PRINT_H
+
+
+class Print {
+
+};
+
+
+#endif //CONSOLETEXTEDITOR_PRINT_H
