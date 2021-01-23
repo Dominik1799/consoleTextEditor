@@ -12,9 +12,9 @@ int main(int argc, char* argv[]) {
     while (true) {
         std::cout << "* ";
         std::getline(std::cin, command);
-        manager.processCommand(command);
         if (command == "q")
             break;
+        manager.processCommand(command);
     }
     return 0;
 }

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include <regex>
+#include "commands/PrintCommand.h"
 #include "SessionManager.h"
 
 SessionManager::SessionManager(std::string& filename) {
@@ -19,19 +19,26 @@ SessionManager::SessionManager(std::string& filename) {
 }
 
 void SessionManager::processCommand(std::string &command) {
-    std::vector commands = commandSplitter(command);
+    std::vector<std::string> commands = commandSplitter(command);
     if (commands.empty()) return;
     std::string invoker = commands[0];
-    std::regex rangePattern("^([0-9]?,[0-9]?)$");
     std::vector<std::string> possibleCommands;
-    if (_print.count(invoker)) possibleCommands.emplace_back("print / tlac");
-    if (_write.count(invoker)) possibleCommands.emplace_back("write / zapis");
-    if (_append.count(invoker)) possibleCommands.emplace_back("append / pridaj");
-    if (_delete.count(invoker)) possibleCommands.emplace_back("delete / vymaz");
-    if (commands.size() == 2) {
-        bool match = std::regex_match(commands[1],rangePattern);
-        std::cout << match;
+    if (_print.count(invoker)) possibleCommands.emplace_back("print/tlac");
+    if (_write.count(invoker)) possibleCommands.emplace_back("write/zapis");
+    if (_append.count(invoker)) possibleCommands.emplace_back("append/pridaj");
+    if (_delete.count(invoker)) possibleCommands.emplace_back("delete/vymaz");
+    if (_change.count(invoker)) possibleCommands.emplace_back("change/zmen");
+    if (possibleCommands.size() > 1) {
+        std::cout << "Ambiguous command " << invoker << ", could be { ";
+        for (auto& comm : possibleCommands)
+            std::cout << comm << " ";
+        std::cout << "}\n";
+        return;
+    } else if (possibleCommands.empty()) {
+        std::cout << "Unknown command " << invoker << "\n";
+        return;
     }
+    if (possibleCommands[0] == "print/tlac") PrintCommand::getInstance()->execute(commands, session);
 
 }
 
