@@ -12,7 +12,7 @@ private:
     std::unordered_set<std::string> _append{"a"};
     std::unordered_set<std::string> _change{"c","z"};
     std::unordered_set<std::string> _write{"w","z"};
-    std::unordered_set<std::string> _quit{"q"};
+    std::unordered_set<std::string> _quit{"q","q!"};
     std::unordered_set<std::string> _delete{"d"};
 
     static std::vector<std::string> commandSplitter(std::string& command);

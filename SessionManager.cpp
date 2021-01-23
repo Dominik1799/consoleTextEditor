@@ -6,6 +6,7 @@
 #include "commands/ChangeCommand.h"
 #include "commands/DeleteCommand.h"
 #include "SessionManager.h"
+#include "commands/QuitCommand.h"
 
 SessionManager::SessionManager(std::string& filename) {
     session.fileName = filename;
@@ -32,6 +33,7 @@ void SessionManager::processCommand(std::string &command) {
     if (_append.count(invoker)) possibleCommands.emplace_back("append/pridaj");
     if (_delete.count(invoker)) possibleCommands.emplace_back("delete/vymaz");
     if (_change.count(invoker)) possibleCommands.emplace_back("change/zmen");
+    if (_quit.count(invoker)) possibleCommands.emplace_back("quit/skonci");
     if (possibleCommands.size() > 1) {
         std::cout << "Ambiguous command " << invoker << ", could be { ";
         for (auto& comm : possibleCommands)
@@ -47,6 +49,7 @@ void SessionManager::processCommand(std::string &command) {
     if (possibleCommands[0] == "append/pridaj") AppendCommand::getInstance()->execute(commands, session);
     if (possibleCommands[0] == "delete/vymaz") DeleteCommand::getInstance()->execute(commands, session);
     if (possibleCommands[0] == "change/zmen") ChangeCommand::getInstance()->execute(commands, session);
+    if (possibleCommands[0] == "quit/skonci") QuitCommand::getInstance()->execute(commands, session);
 
 }
 

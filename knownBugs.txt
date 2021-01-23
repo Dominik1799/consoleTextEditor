@@ -5,3 +5,10 @@
 toto bude problem ked budem implementovat prikaz quit.
 
 3. refaktorni regular execute na change prikaze prosim, je to grc ten dvojity while
+
+4. nejde appendovat prazdne riadky a teda asi ani changovat nejde tak aby si pridal prazdne riadky. skus to este v normalnej sys konzole.
+   ide ale pridavat prazdne riadky ak sa napise jeden riadok normalne, da sa potom prazdny a potom zase normalne. (MOZNO FUNGUJE VSETKO, LEN SOM GAY)
+
+5. releasni pamat v quit prikaze alebo kde
+
+6. pridaj vsade tie aliasy co treba
