@@ -1,5 +1,9 @@
 #include <iostream>
 #include "SessionManager.h"
+#include "commands/Command.h"
+
+std::string Command::rangePattern = "^(([0-9]+)?,?([0-9]+)?)$";
+std::string Command::singleLinePattern = "^([0-9]+)$";
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {

@@ -9,6 +9,11 @@
 
 class Command {
 protected:
+    static std::string rangePattern;
+    static std::string singleLinePattern;
+    // vrati:
+    // prazdny vektor: chyba
+    // inak vracia riadky ktore zahrna dany range
     std::vector<int> processRange(std::string& range, const Session& session) {
         std::vector<int> result;
         if (range.find(',') == std::string::npos) { // nenasla sa ciarka, je to jedno cislo

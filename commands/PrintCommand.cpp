@@ -9,7 +9,7 @@ PrintCommand *PrintCommand::getInstance() {
 }
 
 void PrintCommand::execute(const std::vector<std::string>& commands, const Session& session) {
-    std::regex rangePattern("^(([0-9]+)?,?([0-9]+)?)$");
+    std::regex rangePattern(Command::rangePattern);
     std::vector<int> range;
     if (commands.size() == 2 && std::regex_match(commands[1], rangePattern)) {
         std::string r = commands[1];

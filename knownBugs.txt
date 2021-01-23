@@ -1,0 +1,7 @@
+1. ak subor nekonci novym riadkom a len ho otvorim a zapisem, pridam mu novy riadok vzdy, co zvysi jeho velkost o 2 byty.
+    potencionalny fix moze byt precitat subor a checknut ci na konci je prazdny riadok, ak hej napis to do session structu
+
+2. ak sa command ktory ma zmenit obsah(append, delete atd) neodpali lebo je chyba na vstupe, setne flag na to ze je uz subor upraveny.
+toto bude problem ked budem implementovat prikaz quit.
+
+3. refaktorni regular execute na change prikaze prosim, je to grc ten dvojity while

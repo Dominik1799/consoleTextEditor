@@ -6,6 +6,7 @@
 struct Session {
     std::string fileName;
     std::vector<std::string> buffer;
+    bool changesFlag{false};
 };
 
 #endif //CONSOLETEXTEDITOR_SESSION_H

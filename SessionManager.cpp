@@ -1,6 +1,10 @@
 #include <iostream>
 #include <sstream>
 #include "commands/PrintCommand.h"
+#include "commands/WriteCommand.h"
+#include "commands/AppendCommand.h"
+#include "commands/ChangeCommand.h"
+#include "commands/DeleteCommand.h"
 #include "SessionManager.h"
 
 SessionManager::SessionManager(std::string& filename) {
@@ -39,6 +43,10 @@ void SessionManager::processCommand(std::string &command) {
         return;
     }
     if (possibleCommands[0] == "print/tlac") PrintCommand::getInstance()->execute(commands, session);
+    if (possibleCommands[0] == "write/zapis") WriteCommand::getInstance()->execute(commands, session);
+    if (possibleCommands[0] == "append/pridaj") AppendCommand::getInstance()->execute(commands, session);
+    if (possibleCommands[0] == "delete/vymaz") DeleteCommand::getInstance()->execute(commands, session);
+    if (possibleCommands[0] == "change/zmen") ChangeCommand::getInstance()->execute(commands, session);
 
 }
 
