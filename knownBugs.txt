@@ -2,7 +2,7 @@
     potencionalny fix moze byt precitat subor a checknut ci na konci je prazdny riadok, ak hej napis to do session structu (DONE)
 
 2. ak sa command ktory ma zmenit obsah(append, delete atd) neodpali lebo je chyba na vstupe, setne flag na to ze je uz subor upraveny.
-toto bude problem ked budem implementovat prikaz quit.
+toto bude problem ked budem implementovat prikaz quit. (DONE)
 
 3. refaktorni regular execute na change prikaze prosim, je to grc ten dvojity while
 

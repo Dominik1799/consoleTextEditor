@@ -9,7 +9,6 @@ DeleteCommand *DeleteCommand::getInstance() {
 }
 
 void DeleteCommand::execute(const std::vector<std::string> &commands, Session &session) {
-    session.changesFlag = true;
     std::vector<int> range;
     if (commands.size() > 2) {
         std::cout << "Wrong input for command print.\n";
@@ -24,6 +23,7 @@ void DeleteCommand::execute(const std::vector<std::string> &commands, Session &s
     std::vector<std::string> tempBuffer;
     if (commands.size() == 1) {
         session.buffer = tempBuffer;
+        session.changesFlag = true;
         return;
     }
     size_t j{0};
@@ -35,4 +35,5 @@ void DeleteCommand::execute(const std::vector<std::string> &commands, Session &s
         tempBuffer.push_back(session.buffer[i]);
     }
     session.buffer = tempBuffer;
+    session.changesFlag = true;
 }

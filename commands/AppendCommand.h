@@ -11,7 +11,8 @@ class AppendCommand : public Command {
     AppendCommand() = default;
     AppendCommand(AppendCommand const&) = default;
     static AppendCommand* instance;
-    void regularAppend(const std::vector<std::string>& commands, Session& session);
+    bool regularAppend(const std::vector<std::string>& commands, Session& session);
+    bool onelinerAppend(const std::vector<std::string>& commands, Session& session);
 
 public:
     static AppendCommand* getInstance();
