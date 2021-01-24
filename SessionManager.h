@@ -24,7 +24,7 @@ private:
     std::vector<std::string> quitAlias{"quit", "odist", "ukoncit", "exit"};
     std::vector<std::string> deleteAlias{"delete", "zmazat", "odstran", "wipe"};
     std::vector<std::string> substituteAlias{"substitute"};
-    static void generateAliases(std::vector<std::string>& base, std::unordered_set<std::string>& command);
+    void generateAliases(std::vector<std::string>& base, std::unordered_set<std::string>& command);
     static void removeBegWhitespace(std::string& command);
     std::vector<std::string> filterPossibleCommands(std::vector<std::string>& commands, std::string& invoker);
 

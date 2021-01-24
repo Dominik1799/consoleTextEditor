@@ -114,8 +114,12 @@ void SessionManager::removeBegWhitespace(std::string &command) {
 void SessionManager::generateAliases(std::vector<std::string> &base, std::unordered_set<std::string> &command) {
     for (auto& alias : base) {
         for (int i = 1; i <= alias.length(); i++) {
-            if (!command.count(alias.substr(0,i)))
+            if (!command.count(alias.substr(0,i))) {
                 command.emplace(alias.substr(0,i));
+                if (std::count(quitAlias.begin(),quitAlias.end(), "quit"))
+                    command.emplace(alias.substr(0,i) + '!');
+            }
+
         }
     }
 }
