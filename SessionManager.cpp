@@ -11,7 +11,7 @@
 SessionManager::SessionManager(std::string& filename) {
     session.fileName = filename;
     std::ifstream f(session.fileName);
-    if (!f.good()) { // file not exists
+    if (!f.good()) { // file does not exists
         f.close();
         std::ofstream creatingFile(session.fileName);
         creatingFile.close();
@@ -21,6 +21,13 @@ SessionManager::SessionManager(std::string& filename) {
     while (std::getline(f,buffer)) {
         session.buffer.push_back(buffer);
     }
+    f.close();
+    std::ifstream newlineCheck(session.fileName, std::ios::binary);
+    newlineCheck.seekg(-1,std::ios_base::end);
+    char c;
+    newlineCheck.get(c);
+    if(c=='\n')
+        session.endsWithNewline = true;
 }
 
 void SessionManager::processCommand(std::string &command) {

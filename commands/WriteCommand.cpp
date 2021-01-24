@@ -14,8 +14,11 @@ void WriteCommand::execute(const std::vector<std::string> &commands, Session &se
         std::cout << "Cannot write to a file. It might be deleted or opened by another application.\n";
         return;
     }
-    for (auto& line : session.buffer)
-        writer << line << "\n";
+    for (size_t i = 0; i< session.buffer.size(); i++) {
+        writer << session.buffer[i];
+        if (i != session.buffer.size() - 1 || session.endsWithNewline)
+            writer << "\n";
+    }
     writer.close();
     std::ifstream in(session.fileName, std::ifstream::ate | std::ifstream::binary);
     struct stat stat_buf{};
