@@ -11,6 +11,9 @@ toto bude problem ked budem implementovat prikaz quit. (DONE)
 
 5. releasni pamat v quit prikaze alebo kde
 
-6. pridaj vsade tie aliasy co treba
+6. pridaj vsade tie aliasy co treba (DONE)
 
-7. Program nezachovava take iste konce riadkov ako boli pouzite v subore.
+7. Program nezachovava take iste konce riadkov ako boli pouzite v subore. asi kasli na to
+
+
+Ako na substitute: wildcard hviezdicka funguje v regexe ako .
