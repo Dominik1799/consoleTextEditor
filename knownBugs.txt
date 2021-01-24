@@ -12,3 +12,5 @@ toto bude problem ked budem implementovat prikaz quit. (DONE)
 5. releasni pamat v quit prikaze alebo kde
 
 6. pridaj vsade tie aliasy co treba
+
+7. Program nezachovava take iste konce riadkov ako boli pouzite v subore.
