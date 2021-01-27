@@ -16,4 +16,5 @@ toto bude problem ked budem implementovat prikaz quit. (DONE)
 7. Program nezachovava take iste konce riadkov ako boli pouzite v subore. asi kasli na to
 
 
-Ako na substitute: wildcard hviezdicka funguje v regexe ako .
+Ako na substitute: wildcard hviezdicka funguje v regexe ako .*. Pripomienky: pozor na prikaz typu s /penis je super/dva. Treba dat prikaz naspat dokopy lebo
+do funckie pride rozdeleny podla medzier!

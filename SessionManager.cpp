@@ -7,6 +7,7 @@
 #include "commands/AppendCommand.h"
 #include "commands/ChangeCommand.h"
 #include "commands/DeleteCommand.h"
+#include "commands/SubstituteCommand.h"
 #include "SessionManager.h"
 #include "commands/QuitCommand.h"
 
@@ -87,6 +88,7 @@ void SessionManager::processCommand(std::string &command) {
     if (possibleCommands[0] == "d") DeleteCommand::getInstance()->execute(commands, session);
     if (possibleCommands[0] == "c") ChangeCommand::getInstance()->execute(commands, session);
     if (possibleCommands[0] == "q") QuitCommand::getInstance()->execute(commands, session);
+    if (possibleCommands[0] == "s") SubstituteCommand::getInstance()->execute(commands, session);
 
 }
 
