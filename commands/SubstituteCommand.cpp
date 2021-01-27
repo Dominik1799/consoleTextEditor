@@ -79,9 +79,9 @@ int SubstituteCommand::replaceAll(std::string &data, const std::string &toSearch
     int count{0};
     size_t pos = data.find(toSearch);
     while( pos != std::string::npos) {
-        count++;
-        data.replace(pos, toSearch.size(), replaceStr);
-        pos =data.find(toSearch, pos + replaceStr.size());
+        count++; //   \\n    \n
+        if (pos != 0 && data[pos-1] != '\\') data.replace(pos, toSearch.size(), replaceStr);
+        pos = data.find(toSearch, pos + replaceStr.size());
     }
     return count;
 }
@@ -124,10 +124,6 @@ std::vector<std::string> SubstituteCommand::parseFilter(std::string &filter) {
             if (c == '*' && isEscaped) {
                 find += "\\*";
                 isEscaped = false;
-                continue;
-            }
-            if (c == '\n') {
-                find += '\n';
                 continue;
             }
             if (specialChars.count(c)) {
