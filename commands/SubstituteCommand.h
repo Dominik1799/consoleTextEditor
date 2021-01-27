@@ -13,7 +13,7 @@
 class SubstituteCommand : public Command {
     SubstituteCommand() = default;
     SubstituteCommand(SubstituteCommand const&) = default;
-    int replaceAll(std::string& data, const std::string& toSearch, const std::string& replaceStr);
+    int replaceAll(std::string& data, const std::string& toSearch, const std::string& replaceStr, bool isCounting = false);
     static SubstituteCommand* instance;
     std::string checkFilter(std::string& rawCommand, std::string& possibleRange);
 

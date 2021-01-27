@@ -45,7 +45,9 @@ void SubstituteCommand::execute(const std::vector<std::string> &commands, Sessio
     std::regex regex(pattern, std::regex::extended);
     mainBuffer = std::regex_replace(mainBuffer,regex, replace, std::regex_constants::match_any | std::regex_constants::format_sed);
     occurrencesBuffer = std::regex_replace(occurrencesBuffer,regex,subForCounting , std::regex_constants::match_any | std::regex_constants::format_sed);
-    int numOfOccurrences = replaceAll(occurrencesBuffer, subForCounting, "");
+    int numOfOccurrences = replaceAll(occurrencesBuffer, subForCounting, "", true);
+    if (numOfOccurrences > 0)
+        session.changesFlag = true;
     std::stringstream ss(mainBuffer);
     std::string line;
     std::vector<std::string> newContent;
@@ -75,12 +77,12 @@ void SubstituteCommand::execute(const std::vector<std::string> &commands, Sessio
     std::cout << numOfOccurrences << " matches\n";
 }
 
-int SubstituteCommand::replaceAll(std::string &data, const std::string &toSearch, const std::string &replaceStr) {
+int SubstituteCommand::replaceAll(std::string &data, const std::string &toSearch, const std::string &replaceStr, bool isCounting) {
     int count{0};
     size_t pos = data.find(toSearch);
     while( pos != std::string::npos) {
         count++; //   \\n    \n
-        if (pos != 0 && data[pos-1] != '\\') data.replace(pos, toSearch.size(), replaceStr);
+        if ((pos != 0 && data[pos-1] != '\\') || isCounting) data.replace(pos, toSearch.size(), replaceStr);
         pos = data.find(toSearch, pos + replaceStr.size());
     }
     return count;
