@@ -15,12 +15,12 @@ class SubstituteCommand : public Command {
     SubstituteCommand(SubstituteCommand const&) = default;
     int replaceAll(std::string& data, const std::string& toSearch, const std::string& replaceStr);
     static SubstituteCommand* instance;
-    void checkFilter(std::string& commands);
+    std::string checkFilter(std::string& rawCommand, std::string& possibleRange);
 
 public:
     static SubstituteCommand* getInstance();
-    void execute(const std::vector<std::string>& commands, Session& session);
-    std::string parseFilter(std::vector<std::string>& filter);
+    void execute(const std::vector<std::string>& commands, Session& session, std::string& rawCommand);
+    std::vector<std::string> parseFilter(std::string &filter);
 };
 
 

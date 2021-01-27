@@ -8,12 +8,13 @@ SubstituteCommand *SubstituteCommand::getInstance() {
     return nullptr;
 }
 
-void SubstituteCommand::execute(const std::vector<std::string> &commands, Session &session) {
-    if (commands.size() <  2|| commands.size() > 3) {
+void SubstituteCommand::execute(const std::vector<std::string> &commands, Session &session, std::string& rawCommand) {
+    if (commands.size() <  2) {
         std::cout << "Wrong input for command substitute.\n";
         return;
     }
-    std::string f = commands[1];
+    std::string possibleRange;
+    std::string f = checkFilter(rawCommand, possibleRange);
     std::vector<std::string> filter = parseFilter(f);
     if (filter.empty()) {
         std::cout << "Wrong filter format for command substitute: " << f <<"\n";
@@ -22,9 +23,8 @@ void SubstituteCommand::execute(const std::vector<std::string> &commands, Sessio
     std::vector<int> indexes;
     std::string mainBuffer;
     std::string occurrencesBuffer;
-    if (commands.size() == 3) {
-        std::string r = commands[2];
-        indexes = processRange(r, session);
+    if (!possibleRange.empty()) {
+        indexes = processRange(possibleRange, session);
         if (indexes.empty())
             return;
         for (auto& i : indexes) {
@@ -51,7 +51,7 @@ void SubstituteCommand::execute(const std::vector<std::string> &commands, Sessio
     std::vector<std::string> newContent;
     while (std::getline(ss,line, '\n'))
         newContent.push_back(line);
-    if (commands.size() == 2) {
+    if (indexes.empty()) {
         session.buffer = newContent;
         std::cout << numOfOccurrences << " matches\n";
         return;
@@ -72,6 +72,7 @@ void SubstituteCommand::execute(const std::vector<std::string> &commands, Sessio
         resultContent.push_back(session.buffer[i]);
     }
     session.buffer = resultContent;
+    std::cout << numOfOccurrences << " matches\n";
 }
 
 int SubstituteCommand::replaceAll(std::string &data, const std::string &toSearch, const std::string &replaceStr) {
@@ -147,9 +148,34 @@ std::vector<std::string> SubstituteCommand::parseFilter(std::string &filter) {
     return result;
 }
 
+std::string SubstituteCommand::checkFilter(std::string& rawCommand, std::string& possibleRange) {
+    std::string result;
+    std::string temp;
+    int splitters{0};
+    bool isEscaped{false};
+    for (auto& c : rawCommand) {
+        if (c == '/' && !isEscaped) {
+            result += c;
+            splitters++;
+            continue;
+        }
+        if (splitters > 0 && splitters < 3) {
+            result += c;
+            if (c == '\\' && !isEscaped) {
+                isEscaped = true;
+                continue;
+            }
+            if (isEscaped) {
+                isEscaped = false;
+                continue;
+            }
+        }
+        if (splitters >= 3 && c != ' ')
+            possibleRange += c;
 
-std::string SubstituteCommand::parseFilter(std::vector<std::string> &commands) {
-
+    }
+    return result;
 }
+
 
 
