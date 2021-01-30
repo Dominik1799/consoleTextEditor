@@ -140,6 +140,8 @@ std::vector<std::string> SubstituteCommand::parseFilter(std::string &filter) {
     }
     wasSuccess = splitters == 3 && last == '/';
     if (wasSuccess) {
+        if (find == "(.*)")
+            find += '.';
         result.push_back('(' + find + ')');
         result.push_back(replace);
     }
