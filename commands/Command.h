@@ -45,7 +45,7 @@ protected:
                 return result;
             }
             if (a < 1 || a > session.buffer.size() || b < 1 || b > session.buffer.size()) {
-                std::cout << "Unsupported range " << range << ".\n";
+                std::cout << "Unsupported range " << range << " in current state of the file.\n";
                 return result;
             }
             for (int i = a-1; i <= b-1; i++)

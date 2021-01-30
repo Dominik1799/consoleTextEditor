@@ -18,7 +18,7 @@ SessionManager::SessionManager(std::string& filename) {
         f.close();
         std::ofstream creatingFile(session.fileName);
         creatingFile.close();
-        return;
+        f.open(session.fileName);
     }
     std::string buffer;
     while (std::getline(f,buffer)) {
