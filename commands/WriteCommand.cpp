@@ -11,7 +11,7 @@ WriteCommand *WriteCommand::getInstance() {
 void WriteCommand::execute(const std::vector<std::string> &commands, Session &session) {
     std::ofstream writer(session.fileName);
     if (!writer.is_open()) {
-        std::cout << "Cannot write to a file. It might be deleted or opened by another application.\n";
+        std::cout << "Cannot write to a file. It might be deleted, opened by another application or read only.\n";
         return;
     }
     for (size_t i = 0; i< session.buffer.size(); i++) {
@@ -32,9 +32,9 @@ void WriteCommand::execute(const std::vector<std::string> &commands, Session &se
     float kb = size / 1024.0f;
     float mb = kb / 1024.0f;
     float gb = mb / 1024.0f;
-    if (gb >= 1) printf("%.2f GB\n",gb);
-    else if (mb >= 1) printf("%.2f MB\n",mb);
-    else if (kb >= 1) printf("%.2f KB\n",mb);
+    if (gb >= 1.0f) printf("%.2f GB\n",gb);
+    else if (mb >= 1.0f) printf("%.2f MB\n",mb);
+    else if (kb >= 1.0f) printf("%.2f KB\n",kb);
     else  printf("%d B\n",size);
     session.changesFlag = false;
 }
