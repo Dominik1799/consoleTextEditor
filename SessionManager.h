@@ -5,10 +5,24 @@
 #include <unordered_set>
 #include <unordered_map>
 #include "Session.h"
+#include "commands/PrintCommand.h"
+#include "commands/WriteCommand.h"
+#include "commands/AppendCommand.h"
+#include "commands/ChangeCommand.h"
+#include "commands/DeleteCommand.h"
+#include "commands/SubstituteCommand.h"
+#include "commands/QuitCommand.h"
 
 class SessionManager {
 private:
     Session session;
+    PrintCommand PRINT_COMMAND;
+    WriteCommand WRITE_COMMAND;
+    AppendCommand APPEND_COMMAND;
+    ChangeCommand CHANGE_COMMAND;
+    DeleteCommand DELETE_COMMAND;
+    SubstituteCommand SUBSTITUTE_COMMAND;
+    PrintCommand QUIT_COMMAND;
     std::unordered_map<std::string, std::vector<std::string>> commandMap;
     std::unordered_set<std::string> _print;
     std::unordered_set<std::string> _append;

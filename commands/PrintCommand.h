@@ -9,12 +9,7 @@
 #include "../Session.h"
 
 class PrintCommand : public Command {
-    PrintCommand() = default;
-    PrintCommand(PrintCommand const&) = default;
-    static PrintCommand* instance;
-
 public:
-    static PrintCommand* getInstance();
     void execute(const std::vector<std::string>& commands, const Session& session);
 
 

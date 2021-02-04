@@ -1,12 +1,6 @@
 #include "QuitCommand.h"
 
-QuitCommand* QuitCommand::instance = nullptr;
 
-QuitCommand* QuitCommand::getInstance() {
-    if (!instance)
-        instance = new QuitCommand();
-    return instance;
-}
 
 void QuitCommand::execute(const std::vector<std::string> &commands, const Session &session) {
     if (commands.size() > 1) {

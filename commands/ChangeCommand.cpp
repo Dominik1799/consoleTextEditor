@@ -1,14 +1,6 @@
 #include <regex>
 #include "ChangeCommand.h"
 
-ChangeCommand *ChangeCommand::instance = nullptr;
-
-
-ChangeCommand *ChangeCommand::getInstance() {
-    if (!instance)
-        instance = new ChangeCommand;
-    return instance;
-}
 
 void ChangeCommand::execute(const std::vector<std::string> &commands, Session &session) {
     std::regex range(Command::rangePattern);

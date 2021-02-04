@@ -1,12 +1,6 @@
 #include "WriteCommand.h"
 
-WriteCommand *WriteCommand::instance = nullptr;
 
-WriteCommand *WriteCommand::getInstance() {
-    if (!instance)
-        instance = new WriteCommand();
-    return instance;
-}
 
 void WriteCommand::execute(const std::vector<std::string> &commands, Session &session) {
     std::ofstream writer(session.fileName);

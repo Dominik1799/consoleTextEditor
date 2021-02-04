@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <memory>
 #include <iostream>
 #include "../Session.h"
 

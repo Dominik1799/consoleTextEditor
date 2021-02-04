@@ -5,12 +5,7 @@
 #include "Command.h"
 
 class ChangeCommand  : public Command  {
-    ChangeCommand() = default;
-    ChangeCommand(ChangeCommand const&) = default;
-    static ChangeCommand* instance;
-
 public:
-    static ChangeCommand* getInstance();
     void execute(const std::vector<std::string>& commands, Session& session);
     bool regularChange(const std::vector<std::string>& commands, Session& session);
     bool onelinerChange(const std::vector<std::string> &commands, Session &session);

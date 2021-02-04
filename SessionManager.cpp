@@ -2,14 +2,8 @@
 #include <sstream>
 #include <algorithm>
 #include <cctype>
-#include "commands/PrintCommand.h"
-#include "commands/WriteCommand.h"
-#include "commands/AppendCommand.h"
-#include "commands/ChangeCommand.h"
-#include "commands/DeleteCommand.h"
-#include "commands/SubstituteCommand.h"
 #include "SessionManager.h"
-#include "commands/QuitCommand.h"
+
 
 SessionManager::SessionManager(std::string& filename) {
     session.fileName = filename;
@@ -27,7 +21,7 @@ SessionManager::SessionManager(std::string& filename) {
     f.close();
     std::ifstream newlineCheck(session.fileName, std::ios::binary);
     newlineCheck.seekg(-1,std::ios_base::end);
-    char c;
+    char c{' '};
     newlineCheck.get(c);
     if(c=='\n')
         session.endsWithNewline = true;
@@ -82,13 +76,13 @@ void SessionManager::processCommand(std::string &command) {
         std::cout << "Unknown command " << invoker << "\n";
         return;
     }
-    if (possibleCommands[0] == "p") PrintCommand::getInstance()->execute(commands, session);
-    if (possibleCommands[0] == "w") WriteCommand::getInstance()->execute(commands, session);
-    if (possibleCommands[0] == "a") AppendCommand::getInstance()->execute(commands, session);
-    if (possibleCommands[0] == "d") DeleteCommand::getInstance()->execute(commands, session);
-    if (possibleCommands[0] == "c") ChangeCommand::getInstance()->execute(commands, session);
-    if (possibleCommands[0] == "q") QuitCommand::getInstance()->execute(commands, session);
-    if (possibleCommands[0] == "s") SubstituteCommand::getInstance()->execute(commands, session, command);
+    if (possibleCommands[0] == "p") PRINT_COMMAND.execute(commands, session);
+    if (possibleCommands[0] == "w") WRITE_COMMAND.execute(commands, session);
+    if (possibleCommands[0] == "a") APPEND_COMMAND.execute(commands, session);
+    if (possibleCommands[0] == "d") DELETE_COMMAND.execute(commands, session);
+    if (possibleCommands[0] == "c") CHANGE_COMMAND.execute(commands, session);
+    if (possibleCommands[0] == "q") QUIT_COMMAND.execute(commands, session);
+    if (possibleCommands[0] == "s") SUBSTITUTE_COMMAND.execute(commands, session, command);
 
 }
 

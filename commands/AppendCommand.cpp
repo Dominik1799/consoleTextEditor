@@ -1,14 +1,7 @@
 #include <regex>
 #include "AppendCommand.h"
 
-AppendCommand *AppendCommand::instance = nullptr;
 
-
-AppendCommand *AppendCommand::getInstance() {
-    if (!instance)
-        instance = new AppendCommand();
-    return instance;
-}
 
 void AppendCommand::execute(const std::vector<std::string> &commands, Session &session) {
     std::regex singleLinePattern(Command::singleLinePattern);

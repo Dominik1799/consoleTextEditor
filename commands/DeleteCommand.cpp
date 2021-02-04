@@ -1,12 +1,6 @@
 #include "DeleteCommand.h"
 
-DeleteCommand *DeleteCommand::instance = nullptr;
 
-DeleteCommand *DeleteCommand::getInstance() {
-    if (!instance)
-        instance = new DeleteCommand();
-    return instance;
-}
 
 void DeleteCommand::execute(const std::vector<std::string> &commands, Session &session) {
     std::vector<int> range;

@@ -1,12 +1,6 @@
 #include "PrintCommand.h"
 
-PrintCommand* PrintCommand::instance = nullptr;
 
-PrintCommand *PrintCommand::getInstance() {
-    if (!instance)
-        instance = new PrintCommand();
-    return instance;
-}
 
 void PrintCommand::execute(const std::vector<std::string>& commands, const Session& session) {
     std::regex rangePattern(Command::rangePattern);
